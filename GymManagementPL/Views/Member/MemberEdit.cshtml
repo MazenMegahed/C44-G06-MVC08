@@ -1,0 +1,109 @@
+﻿@model MemberViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../images/icon.svg" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <!-- ^ Bootstrap 5.3.8 css file -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- ^ Our main css file -->
+    <link rel="stylesheet" href="~/css/style.css" />
+    <title>Power fitness | Home</title>
+</head>
+
+<body>
+   
+    <div class="container">
+        <main role="main" class="pb-3">
+
+
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card card-details border-0 p-2 shadow">
+                            <div class="card-body text-center">
+                                <div class="text-center mt-3">
+                                    <img src="~/images/@Model.Photo" alt="@Model.Photo" class="rounded-circle"
+                                         style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #fff; margin-top: -60px;" />
+                                </div>
+                                <div class="card-body text-center">
+                                    <h2 class="mb-1 text-primary-color">@Model.Name</h2>
+                                    <form method="post">
+                                        <div class="mt-4 text-start">
+                                            <div class="row g-3">
+                                                <div class="col-12">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block mb-1">Email</small>
+                                                        <input asp-for="Email" class="form-control" />
+                                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block mb-1">Phone</small>
+                                                        <input asp-for="Phone" class="form-control" />
+                                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block mb-1">Building Number</small>
+                                                        <input asp-for="@Model.BuildingNumber" class="form-control" />
+                                                        <span asp-validation-for="BuildingNumber"
+                                                              class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block mb-1">City</small>
+                                                        <input asp-for="@Model.CityName" class="form-control" />
+                                                     @*    <span asp-validation-for="City" class="text-danger"></span> *@
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block mb-1">Street</small>
+                                                        <input asp-for="@Model.StreetName" class="form-control" />
+@*                                                         <span asp-validation-for="Street" class="text-danger"></span> *@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="d-flex justify-content-between gap-2 mt-3 px-3 pb-3">
+                                            <a asp-controller="Member" asp-action="Index" class="btn btn-fill ">
+                                                Back to
+                                                List
+                                            </a>
+                                            <button type="submit" class="btn btn-fill ">
+                                              
+                                                Done</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </main>
+    </div>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/jquery.validate.unobtrusive.min.js"></script>
+</body>
+
+</html>
