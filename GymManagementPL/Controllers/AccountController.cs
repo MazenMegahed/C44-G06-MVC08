@@ -50,6 +50,7 @@ namespace GymManagementPL.Controllers
             }
             if (result.Succeeded)
             {
+
                 return RedirectToAction("Index", "Home");
             }
 

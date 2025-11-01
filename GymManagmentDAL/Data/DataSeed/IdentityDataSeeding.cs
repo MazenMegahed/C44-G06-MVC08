@@ -31,32 +31,33 @@ namespace GymManagmentDAL.Data.DataSeed
                         }
                     }
                 }
-
-                // Seed super admin user
-                var superAdmin = new ApplicationUser
+             
+                if (!userManager.Users.Any())
                 {
-                    FirstName = "Mazen",
-                    LastName = "Megahed",
-                    UserName = "MazenMegahed",
-                    Email = "test@gmail.com",
-                    PhoneNumber = "01069000383"
-                };
+                    var superAdmin = new ApplicationUser
+                    {
+                        FirstName = "Mazen",
+                        LastName = "Megahed",
+                        UserName = "MazenMegahed",
+                        Email = "mazen@gmail.com",
+                        PhoneNumber = "1234567890"
+                    };
 
-                userManager.CreateAsync(superAdmin, "P@123456").Wait();
-                userManager.AddToRoleAsync(superAdmin, "SuperAdmin").Wait();
+                    var createResult = userManager.CreateAsync(superAdmin, "P@ssword123").Result;
+                    userManager.AddToRoleAsync(superAdmin, "SuperAdmin").Wait();
 
-                // Seed admin user
-                var admin = new ApplicationUser
-                {
-                    FirstName = "Mohamed",
-                    LastName = "Ali",
-                    UserName = "MohamedAli",
-                    Email = "MohamedAli@gmail.com",
-                    PhoneNumber = "523697411"
-                };
-                userManager.CreateAsync(admin, "P@ssword").Wait();
-                userManager.AddToRoleAsync(admin, "Admin").Wait();
+                    var admin = new ApplicationUser
+                    {
+                        FirstName = "Mohamed",
+                        LastName = "Ali",
+                        UserName = "MohamedAli",
+                        Email = "MohamedAli@gmail.com",
+                        PhoneNumber = "523697411"
+                    };
 
+                    userManager.CreateAsync(admin, "P@ssword2").Wait();
+                    userManager.AddToRoleAsync(admin, "Admin").Wait();
+                }
                 return true;
             }
             catch (Exception ex)
