@@ -34,17 +34,7 @@ namespace GymManagementPL
             builder.Services.AddScoped<ITrainerService, TrainerService>();
             builder.Services.AddScoped<IMembershipService, MembershipService>();
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            {
-                options.Password.RequiredLength = 6;
-                options.Password.RequireUppercase = true;
-            }).AddEntityFrameworkStores<GymDbContext>();
-
-            builder.Services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Account/AccessDenied";
-            });
+         
 
 
             builder.Services.AddAutoMapper(x => x.AddProfile(new MappingProfile()));
