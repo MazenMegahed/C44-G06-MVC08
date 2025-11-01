@@ -35,14 +35,14 @@ namespace GymManagmentDAL.Data.DataSeed
                 // Seed super admin user
                 var superAdmin = new ApplicationUser
                 {
-                    FirstName = "Ahmed",
-                    LastName = "Khaled",
-                    UserName = "AhmedKhaled",
-                    Email = "ahmed@gmail.com",
-                    PhoneNumber = "1234567890"
+                    FirstName = "Mazen",
+                    LastName = "Megahed",
+                    UserName = "MazenMegahed",
+                    Email = "test@gmail.com",
+                    PhoneNumber = "01069000383"
                 };
 
-                userManager.CreateAsync(superAdmin, "P@ssword").Wait();
+                userManager.CreateAsync(superAdmin, "P@123456").Wait();
                 userManager.AddToRoleAsync(superAdmin, "SuperAdmin").Wait();
 
                 // Seed admin user

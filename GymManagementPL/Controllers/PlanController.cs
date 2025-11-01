@@ -40,7 +40,9 @@ namespace GymManagementPL.Controllers
                 }
                 else return View(UPVM);
             }
-           else { return RedirectToAction(nameof(Index)); }
+           else {
+                ModelState.AddModelError("WrongData", "Check Data Validation");
+                return RedirectToAction(nameof(Index)); }
         }
        
         [HttpPost]

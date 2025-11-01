@@ -1,4 +1,4 @@
-﻿using GymManagement.BLL.ViewModels;
+﻿using GymManagementBLL.ViewModels;
 using GymManagementBLL.Services.Interfaces;
 using GymManagmentDAL.Entities;
 using Microsoft.AspNetCore.Identity;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.ComponentModel.DataAnnotations;
 
-namespace GymManagement.BLL.ViewModels
+namespace GymManagementBLL.ViewModels
 {
     public class LoginViewModel
     {
