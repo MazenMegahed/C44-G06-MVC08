@@ -1,10 +1,10 @@
-using AutoMapper;
 using GymManagementBLL;
 using GymManagementBLL.Services.Classes;
 using GymManagementBLL.Services.Interfaces;
 using GymManagementDAL.Data.DataSeed;
-using GymManagementDAL_Entities;
 using GymManagmentDAL.Data.Contexts;
+using GymManagmentDAL.Data.DataSeed;
+using GymManagmentDAL.Entities;
 using GymManagmentDAL.Repositories.Classes;
 using GymManagmentDAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -34,7 +34,19 @@ namespace GymManagementPL
             builder.Services.AddScoped<ITrainerService, TrainerService>();
             builder.Services.AddScoped<IMembershipService, MembershipService>();
 
-         
+            builder.Services.AddScoped<IAccountService, AccountService>();
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireUppercase = true;
+            }).AddEntityFrameworkStores<GymDbContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+            });
 
 
             builder.Services.AddAutoMapper(x => x.AddProfile(new MappingProfile()));
@@ -44,7 +56,16 @@ namespace GymManagementPL
             #region Data Seeding
             using var scope = app.Services.CreateScope();
             var gymDbContext = scope.ServiceProvider.GetRequiredService<GymDbContext>();
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
             GymDataSeeding.SeedData(gymDbContext);
+            IdentityDataSeeding.SeedData(roleManager, userManager);
+
+
+
+
+
             #endregion
 
             // Configure the HTTP request pipeline.
@@ -56,15 +77,16 @@ namespace GymManagementPL
             }
 
             app.UseHttpsRedirection();
+            app.MapStaticAssets();
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapStaticAssets();
+           
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
+                pattern: "{controller=Account}/{action=Login}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

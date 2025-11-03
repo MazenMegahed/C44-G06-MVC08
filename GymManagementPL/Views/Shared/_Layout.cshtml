@@ -39,10 +39,13 @@
                             <a class="nav-link @(currentController == "Home" ? "active" : "") px-3 py-2 mx-2 fw-bolder fs-5"
                                aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(currentController == "Members" ? "active" : "") px-3 py-2 mx-2 fw-bolder fs-5"
-                               aria-current="page" asp-controller="Member" asp-action="Index">Members</a>
-                        </li>
+                    @*     @if (User.IsInRole("SuperAdmin"))
+                        { *@
+                            <li class="nav-item">
+                                <a class="nav-link @(currentController == "Members" ? "active" : "") px-3 py-2 mx-2 fw-bolder fs-5"
+                                aria-current="page" asp-controller="Member" asp-action="Index">Members</a>
+                            </li>
+                        @* } *@
                         <li class="nav-item">
                             <a class="nav-link @(currentController == "Trainers" ? "active" : "") px-3 py-2 mx-2 fw-bolder fs-5"
                                aria-current="page" asp-controller="Trainer" asp-action="Index">Trainers</a>
@@ -62,6 +65,13 @@
                         <li class="nav-item">
                             <a class="nav-link @(currentController == "Schedule" ? "active" : "") px-3 py-2 mx-2 fw-bolder fs-5"
                                aria-current="page" href="@Url.Action("Index", "Schedule")">Sessions Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <form asp-action="Logout" asp-controller="Account" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-link nav-link px-3 py-2 mx-2 fw-bolder fs-5">
+                                    Logout
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
